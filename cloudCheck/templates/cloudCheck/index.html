@@ -1,0 +1,48 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+<br>
+<img src="{{ STATIC_URL }}{{images.sensor}}/{{images.scene_id}}-BROWSE.jpg"/>
+
+<!-- Form for inputting cloud cover categorization -->
+<div class="container">
+
+  <div class="left">
+    <form action="/cloudCheck/cloud_submit/{{images.id}}" method="post">
+      {% csrf_token %}
+      <br>
+
+      <div class="fieldWrapper">
+	{{ form.cloud_classification.errors }}
+	<label for="id_cloud_classification">Cloud classification: </label>
+	{{ form.cloud_classification }}
+      </div>
+      
+      <div class="fieldWrapper">
+	{{ form.cloud_comments.errors }}
+	<br>
+	{{ form.cloud_comments }}
+      </div>
+
+      <br>
+      <input type="submit" value="Save">
+    </form>
+  </div>
+  
+  <div class="right">
+    <br>
+    <b>{{ images.scene_id }}</b>
+    <br>
+    <br>
+    Acquistion time: {{ images.acq_time }}
+    <br>
+    Center longitude:    {{ images.cent_lon }} <br>
+    Center latitude :    {{ images.cent_lat }} <br>
+    <br>
+    Image ID: {{ images.id }}    Cloud code: {{ images.is_cloudy }}
+  </div>
+
+</div>
+
+

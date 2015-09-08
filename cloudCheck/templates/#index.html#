@@ -1,0 +1,3 @@
+{% if images %}
+
+   <img src="/rdebase/sea_ice/2015jan2015"
